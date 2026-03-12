@@ -11,17 +11,18 @@ import { useUser } from "@clerk/clerk-react";
 // --- Safe JSON parsing helper ---
 function safeParse(data, fallback) {
   if (!data) return fallback;
+
   if (typeof data === "string") {
     try {
       return JSON.parse(data);
-    } catch (e) {
-      console.error("Error parsing JSON:", e);
-      return fallback;
+    } catch {
+      // if it's plain text, return it as text instead of failing
+      return data;
     }
   }
+
   return data;
 }
-
 // --- Date formatting ---
 function formatDate(dateString) {
   if (!dateString) return "-";
@@ -58,10 +59,10 @@ function ViewReport({ consultation = {} }) {
     () => safeParse(consultation.report, {}),
     [consultation.report]
   );
-  const messagesArray = useMemo(
-    () => safeParse(consultation.messages, []),
-    [consultation.messages]
-  );
+  const messagesArray = useMemo(() => {
+    const parsed = safeParse(consultation.messages, []);
+    return Array.isArray(parsed) ? parsed : [];
+  }, [consultation.messages]);
 
   const hasReport = Object.keys(reportData).length > 0;
 
