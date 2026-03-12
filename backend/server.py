@@ -15,12 +15,7 @@ app = Flask(__name__)
 # Enable CORS for frontend
 from flask_cors import CORS
 
-CORS(
-    app,
-    resources={r"/api/*": {"origins": ["http://localhost:5173", "http://localhost:5174"]}},
-    supports_credentials=True,
-    methods=["GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"]
-)
+resources={r"/api/*": {"origins": "*"}}
 # ----------------- DATABASE CONFIG -----------------
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 INSTANCE_DIR = os.path.join(BASE_DIR, "instance")
@@ -86,4 +81,5 @@ with app.app_context():
 
 # ----------------- RUN SERVER -----------------
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)

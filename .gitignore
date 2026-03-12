@@ -25,3 +25,14 @@ dist-ssr
 backend/notebooks/models/
 frontend/.env
 backend/.env
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+instance/
+node_modules/
+dist/
+build/

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../components/ui/Button";
+import {Button} from "../components/ui/button";
 import { useAuth } from "@clerk/clerk-react";
 import AddSymptom from "../components/custom/AddSymptom";
 
