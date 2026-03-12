@@ -1,7 +1,8 @@
+```python
 import os
 import urllib.parse
 from flask import Flask, send_from_directory
-from flask_cors import CORS   #type: ignore
+from flask_cors import CORS
 from dotenv import load_dotenv
 from extensions import db
 
@@ -11,36 +12,35 @@ load_dotenv()
 
 # ----------------- FLASK APP -----------------
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-# Enable CORS for frontend
-from flask_cors import CORS
-
-resources={r"/api/*": {"origins": "*"}}
 # ----------------- DATABASE CONFIG -----------------
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 INSTANCE_DIR = os.path.join(BASE_DIR, "instance")
 os.makedirs(INSTANCE_DIR, exist_ok=True)
 
-# SQLite fallback
+# Default SQLite database (safe fallback)
 SQLITE_PATH = os.path.join(INSTANCE_DIR, "app.db")
-app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{SQLITE_PATH}"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{SQLITE_PATH}"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-# MySQL (if set in .env)
-MYSQL_USER = os.getenv("MYSQL_USER", "root")
+# Optional MySQL configuration
+MYSQL_USER = os.getenv("MYSQL_USER")
 MYSQL_PASSWORD = urllib.parse.quote_plus(os.getenv("MYSQL_PASSWORD", ""))
-MYSQL_HOST = os.getenv("MYSQL_HOST", "localhost")
-MYSQL_DB = os.getenv("MYSQL_DB", "healthspectra")
+MYSQL_HOST = os.getenv("MYSQL_HOST")
+MYSQL_DB = os.getenv("MYSQL_DB")
 
-#app.config['SQLALCHEMY_BINDS'] = {
-#   "mysql_db": f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}/{MYSQL_DB}"
-#}
+if MYSQL_USER and MYSQL_HOST and MYSQL_DB:
+    app.config["SQLALCHEMY_BINDS"] = {
+        "mysql_db": f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}/{MYSQL_DB}"
+    }
 
 # ----------------- INITIALIZE DB -----------------
 db.init_app(app)
 
 # ----------------- IMPORT MODELS & ROUTES -----------------
 from models import User, Consultation, Category, DoctorList, Appointment
+
 from routes.consultation import consultation_bp
 from routes.predict import predict_bp
 from routes.doctor_match import match_doctor_bp
@@ -62,24 +62,29 @@ app.register_blueprint(report_bp, url_prefix="/api")
 app.register_blueprint(users_bp, url_prefix="/api")
 app.register_blueprint(auth_bp, url_prefix="/api")
 app.register_blueprint(categories_bp, url_prefix="/api")
+
 app.register_blueprint(popular_doctors_bp)
-app.register_blueprint(book_appointment_bp, url_prefix="")
-app.register_blueprint(doctor_bp, url_prefix="")
+app.register_blueprint(book_appointment_bp)
+app.register_blueprint(doctor_bp)
 
 # ----------------- ROUTES -----------------
 @app.route("/")
 def home():
-    return "Hello, world!"
+    return "HealthSpectra API running"
 
-@app.route('/static/<path:filename>')
+@app.route("/static/<path:filename>")
 def static_files(filename):
     return send_from_directory("static", filename)
 
 # ----------------- CREATE TABLES -----------------
 with app.app_context():
-    db.create_all()  # creates all tables in default + binds
+    try:
+        db.create_all()
+    except Exception as e:
+        print(f"Database initialization warning: {e}")
 
 # ----------------- RUN SERVER -----------------
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+```
