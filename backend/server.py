@@ -32,9 +32,9 @@ MYSQL_PASSWORD = urllib.parse.quote_plus(os.getenv("MYSQL_PASSWORD", ""))
 MYSQL_HOST = os.getenv("MYSQL_HOST", "localhost")
 MYSQL_DB = os.getenv("MYSQL_DB", "healthspectra")
 
-app.config['SQLALCHEMY_BINDS'] = {
-    "mysql_db": f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}/{MYSQL_DB}"
-}
+#app.config['SQLALCHEMY_BINDS'] = {
+#   "mysql_db": f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}/{MYSQL_DB}"
+#}
 
 # ----------------- INITIALIZE DB -----------------
 db.init_app(app)
