@@ -72,38 +72,41 @@ class DoctorList(db.Model):
     __tablename__ = "doctorlist"
     __bind_key__ = "mysql_db"
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
 
-    name = db.Column(db.String(100), nullable=False)
-    address = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(100))
+    address = db.Column(db.String(255))
 
-    patients = db.Column(db.Integer, default=0)
-    years_of_experience = db.Column(db.Integer, nullable=False)
-
-    # Queue consultation hours
-    queue_start_time = db.Column(db.Time, nullable=True)
-    queue_end_time = db.Column(db.Time, nullable=True)
-
-    # Fixed slot consultation hours
-    slot_start_time = db.Column(db.Time, nullable=True)
-    slot_end_time = db.Column(db.Time, nullable=True)
-
-    # Slot duration (minutes)
-    slot_duration = db.Column(db.Integer, default=30)
+    patients = db.Column(db.Integer)
+    years_of_experience = db.Column(db.Integer)
 
     about = db.Column(db.Text)
 
-    category_id = db.Column(db.Integer)
+    category_id = db.Column(db.String(100))
     category = db.Column(db.String(100))
 
     phone = db.Column(db.String(20))
     image = db.Column(db.String(255))
 
-    created_at = db.Column(db.DateTime, default=utcnow)
-    updated_at = db.Column(db.DateTime, default=utcnow, onupdate=utcnow)
+    queue_start_time = db.Column(db.Time)
+    queue_end_time = db.Column(db.Time)
 
-    def __repr__(self):
-        return f"<DoctorList {self.id} - {self.name}>"
+    slot_start_time = db.Column(db.Time)
+    slot_end_time = db.Column(db.Time)
+
+    slot_duration = db.Column(db.Integer)
+
+    email = db.Column(db.String(255))
+    clerk_user_id = db.Column(db.String(255))
+
+    specialization = db.Column(db.String(255))
+    experience = db.Column(db.Integer)
+    consultation_fee = db.Column(db.Integer)
+    description = db.Column(db.Text)
+
+    created_at = db.Column(db.DateTime)
+    updated_at = db.Column(db.DateTime)
+    
     
 class Appointment(db.Model):
     __tablename__ = "appointments"
@@ -112,6 +115,7 @@ class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     doctor_id = db.Column(db.Integer, db.ForeignKey("doctorlist.id"))
 
+    
     doctor_name = db.Column(db.String(255))
     patient_name = db.Column(db.String(255))
     patient_email = db.Column(db.String(255))

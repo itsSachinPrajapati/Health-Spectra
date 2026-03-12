@@ -13,8 +13,14 @@ load_dotenv()
 app = Flask(__name__)
 
 # Enable CORS for frontend
-CORS(app, resources={r"/api/*": {"origins": ["http://localhost:5173"]}}, supports_credentials=True, methods=["GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"])
+from flask_cors import CORS
 
+CORS(
+    app,
+    resources={r"/api/*": {"origins": ["http://localhost:5173", "http://localhost:5174"]}},
+    supports_credentials=True,
+    methods=["GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"]
+)
 # ----------------- DATABASE CONFIG -----------------
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 INSTANCE_DIR = os.path.join(BASE_DIR, "instance")
@@ -50,6 +56,7 @@ from routes.Auth import auth_bp
 from routes.categories import categories_bp
 from routes.populardoctors import popular_doctors_bp
 from routes.book_appointment import book_appointment_bp
+from routes.doctor_portal import doctor_bp
 
 # ----------------- REGISTER BLUEPRINTS -----------------
 app.register_blueprint(match_doctor_bp, url_prefix="/api")
@@ -62,6 +69,7 @@ app.register_blueprint(auth_bp, url_prefix="/api")
 app.register_blueprint(categories_bp, url_prefix="/api")
 app.register_blueprint(popular_doctors_bp)
 app.register_blueprint(book_appointment_bp, url_prefix="")
+app.register_blueprint(doctor_bp, url_prefix="")
 
 # ----------------- ROUTES -----------------
 @app.route("/")
