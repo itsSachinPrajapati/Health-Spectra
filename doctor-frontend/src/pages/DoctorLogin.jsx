@@ -17,7 +17,7 @@ export default function DoctorLogin() {
       try {
     
         const res = await axios.get(
-          `http://127.0.0.1:5000/api/doctors/me/${user.id}`
+          `${import.meta.env.VITE_API_URL}/api/doctors/me/${user.id}`
         )
     
         const doctor = res.data

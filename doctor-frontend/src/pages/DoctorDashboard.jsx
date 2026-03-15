@@ -16,7 +16,7 @@ export default function DoctorDashboard() {
 
   useEffect(() => {
     if (!user) return
-    fetch(`http://127.0.0.1:5000/api/doctors/dashboard/${user.id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/doctors/dashboard/${user.id}`)
       .then(res => res.json())
       .then(res => {
         setData(res)

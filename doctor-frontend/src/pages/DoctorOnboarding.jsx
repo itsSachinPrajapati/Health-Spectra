@@ -59,7 +59,7 @@ export default function DoctorOnboarding() {
     Object.keys(form).forEach((key) => formData.append(key, form[key]))
     if (image) formData.append("image", image)
 
-    const res = await fetch("http://127.0.0.1:5000/api/doctors/update-profile", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/doctors/update-profile`, {
       method: "POST",
       body: formData,
     })

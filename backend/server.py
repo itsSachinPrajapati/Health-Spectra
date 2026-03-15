@@ -12,7 +12,18 @@ load_dotenv()
 
 # ----------------- FLASK APP -----------------
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+CORS(
+    app,
+    resources={r"/api/*": {
+        "origins": [
+            "https://healthspectra.site",
+            "https://www.healthspectra.site",
+            "https://doctor.healthspectra.site"
+        ]
+    }},
+    supports_credentials=True
+)
 
 # ----------------- DATABASE CONFIG -----------------
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
