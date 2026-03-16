@@ -174,7 +174,7 @@ export default function LandingPage() {
             <div style={{ width: 34, height: 34, background: `linear-gradient(135deg, ${COLORS.gold}, ${COLORS.goldLight})`, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
               <Stethoscope size={18} color={COLORS.navy} />
             </div>
-            <span className="display" style={{ fontSize: 22, fontWeight: 600, color: COLORS.white, letterSpacing: "0.02em" }}>HealthSpectra<span className="gold-text">AI</span></span>
+            <span className="display" style={{ fontSize: 22, fontWeight: 600, color: COLORS.white, letterSpacing: "0.02em" }}>HealthSpectra</span>
           </div>
           <div className="body-font" style={{ display: "flex", gap: 36, alignItems: "center" }}>
             {["Features", "How it Works", "Trust & Safety"].map(item => (
