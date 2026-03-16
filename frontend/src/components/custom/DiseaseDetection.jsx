@@ -25,7 +25,7 @@ export default function DiseaseDetection() {
 
     try {
       setLoading(true);
-      const response = await fetch("http://127.0.0.1:5000/api/predict", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/predict`, {
         method: "POST",
         body: formData,
       });

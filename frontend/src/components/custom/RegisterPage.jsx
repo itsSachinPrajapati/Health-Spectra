@@ -16,7 +16,7 @@ export default function RegisterPage() {
 
       try {
 
-        await axios.post("http://localhost:5000/save-user", {
+        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/save-user`, {
           email: user.primaryEmailAddress.emailAddress,
           name: user.fullName,
           role: "patient"

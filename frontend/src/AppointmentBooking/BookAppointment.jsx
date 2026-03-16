@@ -62,7 +62,7 @@ function BookAppointment() {
     setLoadingDoctor(true);
 
     axios
-      .get(`http://127.0.0.1:5000/api/doctor/${id}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/doctor/${id}`)
       .then((res) => {
         const d = res.data;
 
@@ -117,7 +117,7 @@ function BookAppointment() {
       };
 
       const res = await axios.post(
-        "http://127.0.0.1:5000/api/booking",
+        `${import.meta.env.VITE_BACKEND_URL}/api/booking`,
         payload
       );
 

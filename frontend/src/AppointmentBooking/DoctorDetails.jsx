@@ -24,13 +24,13 @@ function DoctorDetails() {
   useEffect(() => {
     // Fetch main doctor
     axios
-      .get(`http://127.0.0.1:5000/api/doctor/${id}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/doctor/${id}`)
       .then((res) => setDoctor(res.data))
       .catch((err) => console.error(err));
 
     // Fetch suggested doctors
     axios
-      .get("http://127.0.0.1:5000/api/doctors")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/doctors`)
       .then((res) => {
         const filtered = res.data
           .filter((d) => d.id !== parseInt(id))
@@ -63,7 +63,7 @@ function DoctorDetails() {
               {/* Image */}
               <div className="lg:w-1/3 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl flex justify-center items-center p-4">
                 <img
-                  src={`http://127.0.0.1:5000/static/${doctor.image}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/static/${doctor.image}`}
                   alt={doctor.name}
                   className="h-full w-full object-contain rounded-2xl"
                 />
@@ -165,7 +165,7 @@ function DoctorDetails() {
                 className="cursor-pointer bg-white p-3 rounded-xl shadow flex items-center gap-3 hover:bg-gray-100 transition"
               >
                 <img
-                  src={`http://127.0.0.1:5000/static/${doc.image}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/static/${doc.image}`}
                   alt={doc.name}
                   className="w-12 h-12 object-cover rounded-full"
                 />

@@ -22,7 +22,7 @@ function CategoryPage() {
   // Fetch all categories
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:5000/api/doctor-categories")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/doctor-categories`)
       .then((res) => {
         setCategories(res.data);
 
@@ -40,7 +40,7 @@ function CategoryPage() {
     if (!selectedCategory) return;
 
     axios
-      .get(`http://127.0.0.1:5000/api/doctors?category_id=${selectedCategory.id}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/doctors?category_id=${selectedCategory.id}`)
       .then((res) => setDoctors(res.data || []))
       .catch((err) => console.error("Error fetching doctors:", err));
   }, [selectedCategory]);
@@ -68,7 +68,7 @@ function CategoryPage() {
               }`}
             >
               <img
-                src={`http://127.0.0.1:5000/static/${cat.image}`}
+                src={`${import.meta.env.VITE_BACKEND_URL}/static/${cat.image}`}
                 alt={cat.name}
                 className="w-8 h-8 object-contain"
               />
@@ -100,7 +100,7 @@ function CategoryPage() {
                 
                 <div className="w-full aspect-[4/3] overflow-hidden rounded-t-lg bg-gray-100 flex items-center justify-center">
                   <img
-                    src={`http://127.0.0.1:5000/static/${doc.image}`}
+                    src={`${import.meta.env.VITE_BACKEND_URL}/static/${doc.image}`}
                     alt={doc.name}
                     className="w-full h-full object-contain"
                   />

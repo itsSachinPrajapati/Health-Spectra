@@ -32,7 +32,7 @@ function AddSymptom({ disabled }) {
     setHumanDoctors([]);
     setSelectedDoctor(null);
     try {
-      const res = await fetch("http://localhost:5000/api/match-doctor", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/match-doctor `, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ notes: note }),
@@ -77,7 +77,7 @@ function AddSymptom({ disabled }) {
     if (selectedDoctor.type === "AI") {
       // AI Doctor: start AI consultation and redirect to medical agent
       try {
-        const res = await fetch("http://localhost:5000/api/save-consultation", {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/save-consultation`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

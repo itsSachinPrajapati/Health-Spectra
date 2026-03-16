@@ -10,7 +10,7 @@ function CategorySearch() {
   // Fetch categories from backend
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:5000/api/doctor-categories")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/doctor-categories`)
       .then((res) => setCategories(res.data))
       .catch((err) => console.error("Error fetching categories:", err));
   }, []);
@@ -66,7 +66,7 @@ function CategorySearch() {
             onClick={() => handleCategoryClick(cat)}
           >
             <img
-              src={`http://127.0.0.1:5000/static/${cat.image}`}
+              src={`${import.meta.env.VITE_BACKEND_URL}/static/${cat.image}`}
               alt={cat.name}
               className="w-12 h-12 object-contain mb-2"
             />

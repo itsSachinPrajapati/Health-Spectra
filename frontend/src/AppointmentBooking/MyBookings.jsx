@@ -13,7 +13,7 @@ function MyBookings() {
     const email = "sachinprajapati2622@gmail.com"; // replace dynamically
 
     axios
-      .get(`http://127.0.0.1:5000/api/bookings?email=${email}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/bookings?email=${email}`)
       .then((res) => setBookings(res.data))
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
@@ -22,7 +22,7 @@ function MyBookings() {
   const handleCancel = async (id) => {
     if (!window.confirm("Are you sure you want to cancel this booking?")) return;
     try {
-      await axios.delete(`http://127.0.0.1:5000/api/booking/${id}`);
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/booking/${id}`);
       setBookings((prev) => prev.filter((b) => b.id !== id));
     } catch (err) {
       console.error(err);

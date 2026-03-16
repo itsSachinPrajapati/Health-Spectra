@@ -8,7 +8,7 @@ function PopularDoctor() {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:5000/api/doctors")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/doctors`)
       .then((res) => setDoctors(res.data.slice(0, 8))) // 8 doctors only
       .catch((err) => console.error("Error fetching doctors:", err));
   }, []);
@@ -31,7 +31,7 @@ function PopularDoctor() {
             className="bg-white border border-gray-200 rounded-lg shadow p-4 flex flex-col justify-between"
           >
             <img
-              src={`http://127.0.0.1:5000/static/${doc.image}`}
+              src={`${import.meta.env.VITE_BACKEND_URL}/static/${doc.image}`}
               alt={doc.name}
               className="w-full h-44 object-cover object-top rounded-md mb-4"
             />

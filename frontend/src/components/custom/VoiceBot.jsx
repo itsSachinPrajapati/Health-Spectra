@@ -99,7 +99,7 @@ export default function VoiceBot() {
     if (imageFile) formData.append("image", imageFile);
 
     try {
-      const res = await fetch("http://localhost:5000/api/voicebot", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/voicebot`, {
         method: "POST",
         body: formData,
       });

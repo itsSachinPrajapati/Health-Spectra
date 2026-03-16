@@ -18,7 +18,7 @@ export default function AuthPage() {
 
         const email = user.primaryEmailAddress.emailAddress
 
-        const res = await axios.post("http://localhost:5000/save-user", {
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/save-user`, {
           email: email,
           name: user.fullName,
           role: "patient"
