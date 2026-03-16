@@ -21,26 +21,33 @@
       "explanation": "High blood pressure can damage blood vessels and increase the risk of heart disease and stroke."
     },
     {
+      "testName": "Glucose",
+      "result": "110 mg/dL",
+      "normalRange": "70-99 mg/dL",
+      "status": "Elevated",
+      "explanation": "Elevated glucose levels may indicate prediabetes or diabetes."
+    },
+    {
       "testName": "Hemoglobin A1C",
-      "result": "7.2%",
+      "result": "6.2%",
       "normalRange": "Less than 5.7%",
       "status": "Elevated",
-      "explanation": "Elevated HbA1C levels indicate poor blood sugar control, which can lead to diabetes complications."
+      "explanation": "Elevated HbA1C levels suggest poor long-term blood sugar control."
     },
     {
       "testName": "Liver Function",
-      "result": "Unknown",
-      "normalRange": "Unknown",
-      "status": "Unknown",
-      "explanation": "Unknown"
+      "result": "AST 45 U/L, ALT 55 U/L",
+      "normalRange": "AST 10-40 U/L, ALT 7-55 U/L",
+      "status": "Elevated",
+      "explanation": "Elevated liver enzymes may indicate liver damage or inflammation."
     }
   ],
   "overallAssessment": [
-    "The patient has several risk factors for cardiovascular disease, including high cholesterol, high blood pressure, and elevated HbA1C levels."
+    "The patient has several risk factors for cardiovascular disease, including high cholesterol, high blood pressure, and prediabetes."
   ],
   "keyRisks": [
     "Cardiovascular disease",
-    "Diabetes complications"
+    "Diabetes"
   ],
   "lifestyleChanges": [
     "Adopt a healthy diet low in saturated and trans fats",
@@ -50,10 +57,11 @@
   ],
   "recommendations": [
     "Start medication to manage cholesterol and blood pressure",
-    "Monitor blood sugar levels and consider medication if necessary",
-    "Schedule regular check-ups with a primary care provider"
+    "Monitor blood glucose levels and consider medication if prediabetes progresses to diabetes",
+    "Schedule follow-up appointments to monitor progress"
   ],
   "futureConcerns": [
-    "Potential development of cardiovascular disease or diabetes complications if risk factors are not properly managed"
+    "Progression to type 2 diabetes",
+    "Development of cardiovascular complications"
   ]
 }
