@@ -174,7 +174,7 @@ export default function LandingPage() {
             <div style={{ width: 34, height: 34, background: `linear-gradient(135deg, ${COLORS.gold}, ${COLORS.goldLight})`, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
               <Stethoscope size={18} color={COLORS.navy} />
             </div>
-            <span className="display" style={{ fontSize: 22, fontWeight: 600, color: COLORS.white, letterSpacing: "0.02em" }}>Medica<span className="gold-text">AI</span></span>
+            <span className="display" style={{ fontSize: 22, fontWeight: 600, color: COLORS.white, letterSpacing: "0.02em" }}>HealthSpectra<span className="gold-text">AI</span></span>
           </div>
           <div className="body-font" style={{ display: "flex", gap: 36, alignItems: "center" }}>
             {["Features", "How it Works", "Trust & Safety"].map(item => (
@@ -216,7 +216,7 @@ export default function LandingPage() {
             </Reveal>
             <Reveal delay={240}>
               <p className="body-font" style={{ color: COLORS.muted, fontSize: 17, lineHeight: 1.75, marginTop: 24, maxWidth: 480 }}>
-                MedicaAI is a new intelligent health platform that puts clinical-grade AI tools in your hands — for understanding reports, analysing symptoms, and accessing care.
+                HealthSpectra is a new intelligent health platform that puts clinical-grade AI tools in your hands — for understanding reports, analysing symptoms, and accessing care.
               </p>
             </Reveal>
             <Reveal delay={360}>
@@ -432,7 +432,7 @@ export default function LandingPage() {
               <Shield size={16} style={{ color: COLORS.goldLight, flexShrink: 0, marginTop: 2 }} />
               <p className="body-font" style={{ color: COLORS.muted, fontSize: 12, lineHeight: 1.7 }}>
                 <strong style={{ color: COLORS.goldLight }}>Medical Disclaimer: </strong>
-                MedicaAI provides AI-generated information for educational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for medical decisions.
+                HealthSpectra provides AI-generated information for educational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for medical decisions.
               </p>
             </div>
           </Reveal>
@@ -600,7 +600,7 @@ export default function LandingPage() {
 
           {/* Bottom bar */}
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 28, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
-            <span className="body-font" style={{ color: COLORS.muted, fontSize: 12 }}>© 2025 MedicaAI. All rights reserved.</span>
+            <span className="body-font" style={{ color: COLORS.muted, fontSize: 12 }}>© 2025 HealthSpectra. All rights reserved.</span>
             <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 6 }} className="body-font">
                 <span className="pulse-dot"></span>
