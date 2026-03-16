@@ -115,8 +115,53 @@ def update_profile():
 # ---------------------------------------------------
 
 
-@doctor_bp.route("/api/doctors/dashboard/<clerk_user_id>", methods=["GET"])
+@doctor_bp.route("/api/doctors/dashboard/<clerk_user_id>")
 def doctor_dashboard(clerk_user_id):
+
+    doctor = DoctorList.query.filter_by(
+        clerk_user_id=clerk_user_id
+    ).first()
+
+    if not doctor:
+        return {
+            "queue_today": 0,
+            "slots_today": 0,
+            "total_appointments": 0,
+            "queue_list": [],
+            "message": "Doctor profile not found"
+        }, 200
+
+    appointments = Appointment.query.filter_by(
+        doctor_id=doctor.id
+    ).all()
+
+    total_appointments = len(appointments)
+
+    queue_today = len([
+        a for a in appointments
+        if a.booking_type == "queue"
+    ])
+
+    slots_today = len([
+        a for a in appointments
+        if a.booking_type == "slot"
+    ])
+
+    queue_list = [
+        {
+            "queue_number": a.queue_number,
+            "patient_name": a.patient_name,
+            "issue": a.issue
+        }
+        for a in appointments if a.booking_type == "queue"
+    ]
+
+    return {
+        "queue_today": queue_today,
+        "slots_today": slots_today,
+        "total_appointments": total_appointments,
+        "queue_list": queue_list
+    }
 
     doctor = DoctorList.query.filter_by(clerk_user_id=clerk_user_id).first()
 

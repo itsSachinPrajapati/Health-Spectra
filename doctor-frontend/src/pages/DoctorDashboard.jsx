@@ -17,11 +17,15 @@ export default function DoctorDashboard() {
   useEffect(() => {
     if (!user) return
     fetch(`${import.meta.env.VITE_API_URL}/api/doctors/dashboard/${user.id}`)
-      .then(res => res.json())
-      .then(res => {
-        setData(res)
-        setLoading(false)
-      })
+    .then(res => res.json())
+    .then(res => {
+      setData(res)
+      setLoading(false)
+    })
+    .catch(err => {
+      console.error(err)
+      setLoading(false)
+    })
   }, [user])
 
   if (loading) {
