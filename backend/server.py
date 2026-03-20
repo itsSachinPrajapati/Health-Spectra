@@ -10,7 +10,7 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 load_dotenv()
 
 # ----------------- FLASK APP -----------------
-app = Flask(_name_)
+app = Flask(__name__)
 
 CORS(
     app,
