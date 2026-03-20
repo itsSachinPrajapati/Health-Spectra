@@ -100,7 +100,7 @@ except Exception as e:
     print(f"⚠️ Database initialization warning: {e}")
 
 # ----------------- RUN SERVER -----------------
-if _name_ == "_main_":
+if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     print(f"🚀 Starting server on port {port}")
     app.run(host="0.0.0.0", port=port)
