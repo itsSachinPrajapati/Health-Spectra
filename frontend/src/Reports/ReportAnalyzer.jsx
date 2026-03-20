@@ -29,7 +29,7 @@ export default function ReportAnalyzer() {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/analyze`,
+        `https://api.healthspectra.site//api/analyze,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
